@@ -1,4 +1,4 @@
-package slice
+package bmap
 
 import (
 	"testing"
@@ -6,14 +6,20 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestEachSimple(t *testing.T) {
+func TestNewSimple(t *testing.T) {
 	assert := assert.New(t)
 
-	iterable := New([]int{1, 2, 3})
+	original := map[int]int{1: 1, 2: 4, 3: 6}
+	broomMap := New(original)
+	broomMap[0] = 0
 
-	iterated := iterable.Each(func(v interface{}, i int) {
-		iterable[i] = iterable[i].(int) + v.(int)
+	assert.EqualValues(bmap{0: 0, 1: 1, 2: 4, 3: 6}, broomMap)
+	assert.EqualValues(map[int]int{1: 1, 2: 4, 3: 6}, original)
+}
+func TestNewError(t *testing.T) {
+	assert := assert.New(t)
+
+	assert.Panics(func() {
+		New("abc")
 	})
-
-	assert.EqualValues([]interface{}{2, 4, 6}, iterated)
 }

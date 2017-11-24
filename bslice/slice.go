@@ -1,16 +1,16 @@
-package slice
+package bslice
 
 import (
 	"reflect"
 )
 
-func New(slicelike interface{}) slice {
+func New(slicelike interface{}) bslice {
 	s := reflect.ValueOf(slicelike)
 	if s.Kind() != reflect.Slice {
-		panic("toInterfaceSlice expects a slice")
+		panic("can not create a bslice from a not slice type")
 	}
 
-	ret := make(slice, s.Len())
+	ret := make(bslice, s.Len())
 
 	for i := 0; i < s.Len(); i++ {
 		ret[i] = s.Index(i).Interface()
@@ -19,11 +19,11 @@ func New(slicelike interface{}) slice {
 	return ret
 }
 
-type slice []interface{}
+type bslice []interface{}
 
 type iterator func(interface{}, int)
 
-func (s slice) Each(iter iterator) slice {
+func (s bslice) Each(iter iterator) bslice {
 	for i, v := range s {
 		iter(v, i)
 	}
@@ -32,7 +32,7 @@ func (s slice) Each(iter iterator) slice {
 
 type asnycIterator func(interface{}, int, chan<- bool)
 
-func (s slice) EachAsync(iter asnycIterator) slice {
+func (s bslice) EachAsync(iter asnycIterator) bslice {
 	c := make(chan bool, len(s))
 
 	for i, v := range s {
@@ -47,8 +47,8 @@ func (s slice) EachAsync(iter asnycIterator) slice {
 
 type mapper func(interface{}, int) interface{}
 
-func (s slice) Map(m mapper) slice {
-	mapped := make(slice, len(s))
+func (s bslice) Map(m mapper) bslice {
+	mapped := make(bslice, len(s))
 	for i, v := range s {
 		mapped[i] = m(v, i)
 	}
@@ -57,7 +57,7 @@ func (s slice) Map(m mapper) slice {
 
 type reducer func(interface{}, interface{}, int) interface{}
 
-func (s slice) Reduce(r reducer, initialVal interface{}) interface{} {
+func (s bslice) Reduce(r reducer, initialVal interface{}) interface{} {
 	for i, v := range s {
 		initialVal = r(initialVal, v, i)
 	}
@@ -66,8 +66,8 @@ func (s slice) Reduce(r reducer, initialVal interface{}) interface{} {
 
 type filter func(interface{}, int) bool
 
-func (s slice) Filter(f filter) slice {
-	filtered := slice{}
+func (s bslice) Filter(f filter) bslice {
+	filtered := bslice{}
 	for i, v := range s {
 		if f(v, i) {
 			filtered = append(filtered, v)
