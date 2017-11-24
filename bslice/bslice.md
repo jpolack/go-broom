@@ -1,6 +1,4 @@
-# go-broom
-Utility functions for slices, maps and functions
-
+# broom-slice
 ## Create a new broom-slice
 
 A broomslice is a slice wrapper that adds some functionalities
