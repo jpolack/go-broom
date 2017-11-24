@@ -18,7 +18,7 @@ All broom-classes wrap the default behaviour, so that f.e. len() can still be ca
 - [ ] bfunc
     - [ ] bfunc.Args - map a bslice to function args
     - [ ] bfunc.Ret - map multi return values to single bslice
-- [ ] async version of some functions like blice.EachAsync
+- [ ] async version of some functions like bslice.EachAsync
 - [ ] support the types like string,int,float where possible 
 
 
