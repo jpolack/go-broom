@@ -46,3 +46,46 @@ func TestKeys(t *testing.T) {
 
 	assert.EqualValues([]interface{}{1, 2, 3}, broomMap.Keys())
 }
+func TestContains(t *testing.T) {
+	assert := assert.New(t)
+
+	normalMap := map[int]int{1: 2, 2: 3, 3: 4}
+	broomMap := NewOf(normalMap)
+
+	assert.True(broomMap.Contains(1))
+	assert.False(broomMap.Contains(4))
+}
+
+func TestEach(t *testing.T) {
+	assert := assert.New(t)
+
+	normalMap := map[int]int{1: 2, 2: 3, 3: 4}
+	broomMap := NewOf(normalMap)
+
+	found := map[int]bool{1: false, 2: false, 3: false}
+
+	broomMap.Each(func(key interface{}, value interface{}) {
+		assert.EqualValues(normalMap[key.(int)], value.(int))
+		found[key.(int)] = true
+	})
+
+	assert.EqualValues(map[int]bool{1: true, 2: true, 3: true}, found)
+}
+
+func TestMap(t *testing.T) {
+	assert := assert.New(t)
+
+	normalMap := map[int]int{1: 2, 2: 3, 3: 4}
+	broomMap := NewOf(normalMap)
+
+	found := map[int]bool{1: false, 2: false, 3: false}
+
+	mapped := broomMap.Map(func(key interface{}, value interface{}) interface{} {
+		assert.EqualValues(normalMap[key.(int)], value.(int))
+		found[key.(int)] = true
+		return value.(int) * 2
+	})
+
+	assert.EqualValues(map[int]bool{1: true, 2: true, 3: true}, found)
+	assert.EqualValues(bmap{1: 4, 2: 6, 3: 8}, mapped)
+}

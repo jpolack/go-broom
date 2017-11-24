@@ -17,7 +17,7 @@ func main() {
 	//myBroomSlice is a slice containing 1,2,3
 
 	myBroomSlice2 := bslice.New()
-	//myBroomSlice is a empty slice
+	//myBroomSlice is an empty slice
 }
 ```
 

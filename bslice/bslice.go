@@ -51,9 +51,9 @@ type asnycIterator func(interface{}, int, chan<- bool)
 func (s bslice) EachAsync(iter asnycIterator) bslice {
 	c := make(chan bool, len(s))
 
-	for i, v := range s {
+	s.Each(func(v interface{}, i int) {
 		go iter(v, i, c)
-	}
+	})
 
 	for range s {
 		<-c
@@ -65,9 +65,9 @@ type mapper func(interface{}, int) interface{}
 
 func (s bslice) Map(m mapper) bslice {
 	mapped := New()
-	for i, v := range s {
+	s.Each(func(v interface{}, i int) {
 		mapped = append(mapped, m(v, i))
-	}
+	})
 	return mapped
 }
 
@@ -75,10 +75,10 @@ type filter func(interface{}, int) bool
 
 func (s bslice) Filter(f filter) bslice {
 	filtered := New()
-	for i, v := range s {
+	s.Each(func(v interface{}, i int) {
 		if f(v, i) {
 			filtered = append(filtered, v)
 		}
-	}
+	})
 	return filtered
 }

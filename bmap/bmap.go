@@ -62,8 +62,8 @@ type mapper func(interface{}, interface{}) interface{}
 
 func (m bmap) Map(ma mapper) bmap {
 	mapped := New()
-	for i, v := range m {
-		mapped[i] = ma(i, v)
-	}
+	m.Each(func(k interface{}, v interface{}) {
+		mapped[k] = ma(k, v)
+	})
 	return mapped
 }
