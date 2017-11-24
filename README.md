@@ -1,5 +1,5 @@
 # go-broom
-Utility functions for slices, maps and functions
+Utility functions for slices, maps and functions.
 All broom-classes wrap the default behaviour, so that f.e. len() can still be called, a bslice or bmap can still be iterated in a for loop, etc.  
 
 ## Todos
