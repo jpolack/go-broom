@@ -9,12 +9,12 @@ All broom-classes wrap the default behaviour, so that f.e. len() can still be ca
     - [x] bmap.Map
     - [x] bmap.Filter
     - [x] bmap.Reduce
-- [ ] bmap
-    - [ ] bmap.Values - get map values as bslice
-    - [ ] bmap.Keys - get map keys as bslice
-    - [ ] bmap.Each - iterate over map
-    - [ ] bmap.Map - map values in bmap to new bmap 
-    - [ ] bmap.Contains - get if a key is present in a bmap
+- [x] bmap
+    - [x] bmap.Values - get map values as bslice
+    - [x] bmap.Keys - get map keys as bslice
+    - [x] bmap.Each - iterate over map
+    - [x] bmap.Map - map values in bmap to new bmap 
+    - [x] bmap.Contains - get if a key is present in a bmap
 - [ ] bfunc
     - [ ] bfunc.Args - map a bslice to function args
     - [ ] bfunc.Ret - map multi return values to single bslice

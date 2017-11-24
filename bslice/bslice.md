@@ -12,7 +12,12 @@ import (
 
 func main() {
 	mySimpleSlice := []int{1, 2, 3}
-	myBroomSlice := bslice.New(mySimpleSlice)
+	myBroomSlice := bslice.NewOf(mySimpleSlice)
+
+	//myBroomSlice is a slice containing 1,2,3
+
+	myBroomSlice2 := bslice.New()
+	//myBroomSlice is a empty slice
 }
 ```
 
@@ -29,7 +34,7 @@ import (
 
 func main() {
 	mySimpleSlice := []int{1, 2, 3}
-	myBroomSlice := bslice.New(mySimpleSlice)
+	myBroomSlice := bslice.NewOf(mySimpleSlice)
 
 	myBroomSlice.Each(func(number interface{}, i int) {
         //do something for each element
@@ -48,7 +53,7 @@ import (
 
 func main() {
 	mySimpleSlice := []int{1, 2, 3}
-	myBroomSlice := bslice.New(mySimpleSlice)
+	myBroomSlice := bslice.NewOf(mySimpleSlice)
 
 	newBroomSlice := myBroomSlice.Map(func(number interface{}, i int) interface{} {
 		return number.(int) * 2
@@ -68,7 +73,7 @@ import (
 
 func main() {
 	mySimpleSlice := []int{1, 2, 3}
-	myBroomSlice := bslice.New(mySimpleSlice)
+	myBroomSlice := bslice.NewOf(mySimpleSlice)
 
 	totalSum := myBroomSlice.Reduce(func(sum interface{}, number interface{}, i int) interface{} {
 		return sum.(int) + number.(int)
@@ -89,7 +94,7 @@ import (
 
 func main() {
 	mySimpleSlice := []int{1, 2, 3}
-	myBroomSlice := bslice.New(mySimpleSlice)
+	myBroomSlice := bslice.NewOf(mySimpleSlice)
 
 	newBroomSlice := myBroomSlice.Filter(func(number interface{}, i int) bool {
 		return number.(int)%2!=0
@@ -112,7 +117,7 @@ import (
 
 func main() {
 	mySimpleSlice := []int{1, 2, 3}
-	myBroomSlice := bslice.New(mySimpleSlice)
+	myBroomSlice := bslice.NewOf(mySimpleSlice)
 
 	sum := myBroomSlice.Map(func(number interface{}, i int) interface{} {
 		return number.(int) + 2

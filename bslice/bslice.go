@@ -4,7 +4,11 @@ import (
 	"reflect"
 )
 
-func New(slicelike interface{}) bslice {
+func New() bslice {
+	return NewOf([]interface{}{})
+}
+
+func NewOf(slicelike interface{}) bslice {
 	s := reflect.ValueOf(slicelike)
 	if s.Kind() != reflect.Slice {
 		panic("can not create a bslice from a not slice type")
@@ -21,6 +25,18 @@ func New(slicelike interface{}) bslice {
 
 type bslice []interface{}
 
+/*Utility*/
+
+type reducer func(interface{}, interface{}, int) interface{}
+
+func (s bslice) Reduce(r reducer, initialVal interface{}) interface{} {
+	for i, v := range s {
+		initialVal = r(initialVal, v, i)
+	}
+	return initialVal
+}
+
+/*Chainable*/
 type iterator func(interface{}, int)
 
 func (s bslice) Each(iter iterator) bslice {
@@ -48,26 +64,17 @@ func (s bslice) EachAsync(iter asnycIterator) bslice {
 type mapper func(interface{}, int) interface{}
 
 func (s bslice) Map(m mapper) bslice {
-	mapped := make(bslice, len(s))
+	mapped := New()
 	for i, v := range s {
-		mapped[i] = m(v, i)
+		mapped = append(mapped, m(v, i))
 	}
 	return mapped
-}
-
-type reducer func(interface{}, interface{}, int) interface{}
-
-func (s bslice) Reduce(r reducer, initialVal interface{}) interface{} {
-	for i, v := range s {
-		initialVal = r(initialVal, v, i)
-	}
-	return initialVal
 }
 
 type filter func(interface{}, int) bool
 
 func (s bslice) Filter(f filter) bslice {
-	filtered := bslice{}
+	filtered := New()
 	for i, v := range s {
 		if f(v, i) {
 			filtered = append(filtered, v)
