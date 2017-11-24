@@ -10,4 +10,4 @@ Utility functions for slices, maps and functions
 
 See the documentation for:
 * [bslices](./bslice/bslice.md)
-* [bmaps](./bslice/bmap.md)
+* [bmaps](./bmap/bmap.md)
