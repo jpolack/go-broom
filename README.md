@@ -41,4 +41,4 @@ See [bfunc](./bfunc/bfunc.md) for a documentation
 ## Contributions and more
 - Please let me know about featurewishes!
 - Contributors are welcome!
-- I am not that used to Open Source Development so please let me know where I can improve :shit: 
+- I am not that used to open source development so please let me know where I can improve :shit: 
