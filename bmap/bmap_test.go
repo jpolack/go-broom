@@ -17,7 +17,7 @@ func TestNewSimple(t *testing.T) {
 	assert := assert.New(t)
 
 	original := map[int]int{1: 1, 2: 4, 3: 6}
-	broomMap := NewOf(original)
+	broomMap := New(original)
 	broomMap[0] = 0
 
 	assert.EqualValues(bmap{0: 0, 1: 1, 2: 4, 3: 6}, broomMap)
@@ -27,14 +27,21 @@ func TestNewError(t *testing.T) {
 	assert := assert.New(t)
 
 	assert.Panics(func() {
-		NewOf("abc")
+		New("abc")
+	})
+}
+func TestNewError2(t *testing.T) {
+	assert := assert.New(t)
+
+	assert.Panics(func() {
+		New("abc", "def")
 	})
 }
 func TestValues(t *testing.T) {
 	assert := assert.New(t)
 
 	normalMap := map[int]int{1: 2, 2: 3, 3: 4}
-	broomMap := NewOf(normalMap)
+	broomMap := New(normalMap)
 
 	found := map[int]bool{2: false, 3: false, 4: false}
 
@@ -48,7 +55,7 @@ func TestKeys(t *testing.T) {
 	assert := assert.New(t)
 
 	normalMap := map[int]int{1: 2, 2: 3, 3: 4}
-	broomMap := NewOf(normalMap)
+	broomMap := New(normalMap)
 
 	found := map[int]bool{1: false, 2: false, 3: false}
 
@@ -62,7 +69,7 @@ func TestContains(t *testing.T) {
 	assert := assert.New(t)
 
 	normalMap := map[int]int{1: 2, 2: 3, 3: 4}
-	broomMap := NewOf(normalMap)
+	broomMap := New(normalMap)
 
 	assert.True(broomMap.Contains(1))
 	assert.False(broomMap.Contains(4))
@@ -72,7 +79,7 @@ func TestEach(t *testing.T) {
 	assert := assert.New(t)
 
 	normalMap := map[int]int{1: 2, 2: 3, 3: 4}
-	broomMap := NewOf(normalMap)
+	broomMap := New(normalMap)
 
 	found := map[int]bool{1: false, 2: false, 3: false}
 
@@ -88,7 +95,7 @@ func TestMap(t *testing.T) {
 	assert := assert.New(t)
 
 	normalMap := map[int]int{1: 2, 2: 3, 3: 4}
-	broomMap := NewOf(normalMap)
+	broomMap := New(normalMap)
 
 	found := map[int]bool{1: false, 2: false, 3: false}
 

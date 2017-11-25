@@ -5,11 +5,18 @@ import (
 	"reflect"
 )
 
-func New() bmap {
-	return NewOf(make(map[interface{}]interface{}))
+func New(input ...interface{}) bmap {
+	switch len(input) {
+	case 0:
+		return newOf(make(map[interface{}]interface{}))
+	case 1:
+		return newOf(input[0])
+	default:
+		panic("Can not create a bmap from more than one argument")
+	}
 }
 
-func NewOf(maplike interface{}) bmap {
+func newOf(maplike interface{}) bmap {
 	m := reflect.ValueOf(maplike)
 	if m.Kind() != reflect.Map {
 		panic("can not create a bmap from a not map type")

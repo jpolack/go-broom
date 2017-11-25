@@ -11,12 +11,14 @@ import (
 )
 
 func main() {
-	mySimpleMap := map[int]int{1: 2, 2: 4, 3: 9}
-	myBroomMap := bmap.NewOf(mySimpleMap)
-	//myBroomMap is a map containing 1: 2, 2: 4, 3: 9
+	myBroomMap := bmap.New()
+	//myBroomMap is an empty map
 
-	myBroomMap2 := bmap.New()
-	//myBroomMap2 is an empty map
+	mySimpleMap := map[int]int{1: 2, 2: 4, 3: 9}
+	myBroomMap2 := bmap.New(mySimpleMap)
+	//myBroomMap2 is a map containing 1: 2, 2: 4, 3: 9
+
+	
 }
 ```
 
@@ -31,7 +33,7 @@ import (
 
 func main() {
 	mySimpleMap := map[int]int{1: 2, 2: 4, 3: 9}
-	myBroomMap := bmap.NewOf(mySimpleMap)
+	myBroomMap := bmap.New(mySimpleMap)
 
 	myBroomMap.Values() //2,4,9 (not garantueed in that order)
 }
@@ -48,7 +50,7 @@ import (
 
 func main() {
 	mySimpleMap := map[int]int{1: 2, 2: 4, 3: 9}
-	myBroomMap := bmap.NewOf(mySimpleMap)
+	myBroomMap := bmap.New(mySimpleMap)
 
 	myBroomMap.Keys() //1,2,3 (not garantueed in that order)
 }
@@ -65,7 +67,7 @@ import (
 
 func main() {
 	mySimpleMap := map[int]int{1: 2, 2: 4, 3: 9}
-	myBroomMap := bmap.NewOf(mySimpleMap)
+	myBroomMap := bmap.New(mySimpleMap)
 
 	myBroomMap.Contains(1) //true
 	myBroomMap.Contains(4) //false
@@ -85,7 +87,7 @@ import (
 
 func main() {
 	mySimpleMap := map[int]int{1: 2, 2: 4, 3: 9}
-	myBroomMap := bmap.NewOf(mySimpleMap)
+	myBroomMap := bmap.New(mySimpleMap)
 
 	myBroomMap.Each(func(key interface{}, value interface{}) {
         //do something for each element
@@ -104,7 +106,7 @@ import (
 
 func main() {
 	mySimpleMap := map[int]int{1: 2, 2: 4, 3: 9}
-	myBroomMap := bmap.NewOf(mySimpleMap)
+	myBroomMap := bmap.New(mySimpleMap)
 
 	myBroomMap.Map(func(key interface{}, value interface{}) interface{}{
         //map each element

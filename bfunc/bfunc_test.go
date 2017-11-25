@@ -6,10 +6,10 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestNewOf(t *testing.T) {
+func TestNew(t *testing.T) {
 	assert := assert.New(t)
 
-	broomFunc := NewOf(func(x int, y int) int {
+	broomFunc := New(func(x int, y int) int {
 		return x + y
 	})
 
@@ -18,7 +18,7 @@ func TestNewOf(t *testing.T) {
 func TestApply(t *testing.T) {
 	assert := assert.New(t)
 
-	broomFunc := NewOf(func(x int, y int) int {
+	broomFunc := New(func(x int, y int) int {
 		return x + y
 	})
 

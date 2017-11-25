@@ -4,11 +4,18 @@ import (
 	"reflect"
 )
 
-func New() bslice {
-	return NewOf([]interface{}{})
+func New(input ...interface{}) bslice {
+	switch len(input) {
+	case 0:
+		return newOf([]interface{}{})
+	case 1:
+		return newOf(input[0])
+	default:
+		return newOf(input)
+	}
 }
 
-func NewOf(slicelike interface{}) bslice {
+func newOf(slicelike interface{}) bslice {
 	s := reflect.ValueOf(slicelike)
 	if s.Kind() != reflect.Slice {
 		panic("can not create a bslice from a not slice type")
