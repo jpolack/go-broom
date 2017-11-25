@@ -1,18 +1,23 @@
 # go-broom
 Utility functions for slices, maps and functions.
+
 All broom-classes wrap the default behaviour, so that f.e. len() can still be called, a bslice or bmap can still be iterated in a for loop, etc.
 
 ## [broom-slice](./bslice/bslice.md)
-Tired of writing your mapper/filter/reduce functions? I did that for you! All you have to do is some type assertions.\n
+Tired of writing your mapper/filter/reduce functions? I did that for you! All you have to do is some type assertions.
+
 See [bslice](./bslice/bslice.md) for a documentation
 
 ## [broom-map](./bmap/bmap.md) 
-Threads like [this (nice way of getting a slice of values from a map?)](https://stackoverflow.com/questions/13422578/in-golang-is-there-a-nice-way-of-getting-a-slice-of-values-from-a-map) asked for a nice way and here it is!\n
+Threads like [this (nice way of getting a slice of values from a map?)](https://stackoverflow.com/questions/13422578/in-golang-is-there-a-nice-way-of-getting-a-slice-of-values-from-a-map) asked for a nice way and here it is!
+
 See [bmap](./bmap/bmap.md) for a documentation
 
 ## [broom-func](./bfunc/bfunc.md)
-`multiple value in single-value context`? Never again!\n
+`multiple value in single-value context`? Never again!
+
 See [bfunc](./bfunc/bfunc.md) for a documentation
+
 
 ## Todos
 - [x] bslice
