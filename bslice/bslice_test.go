@@ -48,16 +48,21 @@ func TestEachAsnycSimple(t *testing.T) {
 
 	iterable := NewOf([]int{1, 2, 3})
 
-	newIterable := []int{}
+	found := make(map[int]bool)
 
 	iterable.EachAsync(func(v interface{}, i int, c chan<- bool) {
 		for j := 0; j < (10-i)*1000000; j++ {
 		}
-		newIterable = append(newIterable, v.(int))
+		found[v.(int)] = true
 		c <- true
 	})
 
-	assert.EqualValues([]int{3, 2, 1}, newIterable)
+	_, found1 := found[1]
+	assert.True(found1)
+	_, found2 := found[2]
+	assert.True(found2)
+	_, found3 := found[3]
+	assert.True(found3)
 }
 
 func TestMapSimple(t *testing.T) {

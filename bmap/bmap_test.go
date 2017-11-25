@@ -36,7 +36,13 @@ func TestValues(t *testing.T) {
 	normalMap := map[int]int{1: 2, 2: 3, 3: 4}
 	broomMap := NewOf(normalMap)
 
-	assert.EqualValues([]interface{}{2, 3, 4}, broomMap.Values())
+	found := map[int]bool{2: false, 3: false, 4: false}
+
+	for _, v := range broomMap.Values() {
+		found[v.(int)] = true
+	}
+
+	assert.EqualValues(map[int]bool{2: true, 3: true, 4: true}, found)
 }
 func TestKeys(t *testing.T) {
 	assert := assert.New(t)
@@ -44,7 +50,13 @@ func TestKeys(t *testing.T) {
 	normalMap := map[int]int{1: 2, 2: 3, 3: 4}
 	broomMap := NewOf(normalMap)
 
-	assert.EqualValues([]interface{}{1, 2, 3}, broomMap.Keys())
+	found := map[int]bool{1: false, 2: false, 3: false}
+
+	for _, v := range broomMap.Keys() {
+		found[v.(int)] = true
+	}
+
+	assert.EqualValues(map[int]bool{1: true, 2: true, 3: true}, found)
 }
 func TestContains(t *testing.T) {
 	assert := assert.New(t)
