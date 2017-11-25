@@ -1,7 +1,7 @@
 # broom-map
 ## Create a new broom-map
 
-A broommap is a map wrapper that adds some functionalities
+A broom-map is a map wrapper that adds some functionalities
 
 ```golang
 package main

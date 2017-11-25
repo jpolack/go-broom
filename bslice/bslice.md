@@ -1,7 +1,7 @@
 # broom-slice
 ## Create a new broom-slice
 
-A broomslice is a slice wrapper that adds some functionalities
+A broom-slice is a slice wrapper that adds some functionalities
 
 ```golang
 package main
