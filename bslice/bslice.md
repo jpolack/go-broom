@@ -45,7 +45,7 @@ func main() {
 }
 ```
 
-Use ´.EachAsync´ to iterate through your broom-slice asnychronusly. Do not forget to send on the channel c, so the code after ´.EachAsync´ can be executed synchronusly.
+Use `.EachAsync` to iterate through your broom-slice asnychronusly. Do not forget to send on the channel c, so the code after `.EachAsync` can be executed synchronusly.
 
 ```golang
 package main
