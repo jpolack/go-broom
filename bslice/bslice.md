@@ -45,6 +45,26 @@ func main() {
 }
 ```
 
+Use ´.EachAsync´ to iterate through your broom-slice asnychronusly. Do not forget to send on the channel c, so the code after ´.EachAsync´ can be executed synchronusly.
+
+```golang
+package main
+
+import (
+	"github.com/jpolack/go-broom/bslice"
+)
+
+func main() {
+	mySimpleSlice := []int{1, 2, 3}
+	myBroomSlice := bslice.New(mySimpleSlice)
+
+	iterable.EachAsync(func(v interface{}, i int, c chan<- bool) {
+        //do something for each element
+		c <- true
+	})
+}
+```
+
 
 ## Map the bslice values
 ```golang
